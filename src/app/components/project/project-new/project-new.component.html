@@ -1,0 +1,39 @@
+<div class="modal fade" id="project-new-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{title}}</h5>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formdata" class="d-grid gap-3 m-3" (ngSubmit)="onClickSubmit(formdata.value)">
+                    <div class="form-group">
+                      <label>Project Title</label>
+                      <input [(ngModel)]="title" class="form-control" formControlName="title">
+                      <small class="invalid-feedback d-block" *ngIf="formdata.get('title')?.errors" >
+                        {{formdata.get('title')?.errors}}
+                      </small>
+                    </div>
+                    <div class="form-group">
+                        <label>Project Color</label>
+                        <input type="color" [(ngModel)]="color" class="form-control" formControlName="color">
+                        <small class="invalid-feedback d-block" *ngIf="formdata.get('color')?.errors" >
+                          {{formdata.get('color')?.errors}}
+                        </small>
+                      </div>
+                    <div class="form-group">
+                      <label>Description</label>
+                      <textarea [(ngModel)]="description" formControlName="description" class="form-control" rows="5" id="comment"></textarea>                      
+                      <small class="invalid-feedback d-block" *ngIf="formdata.get('description')?.errors" >
+                        {{formdata.get('description')?.errors}}
+                      </small>
+                    </div>
+                    
+                    <div class="modal-footer">
+                      <button type="button" #closebutton class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary" >Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

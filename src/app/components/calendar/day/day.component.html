@@ -1,0 +1,22 @@
+<div class="event-items align-items-center" *ngIf="validate_date()">
+    <div class="events">
+        <div *ngFor="let task of tasks">
+            <span *ngIf="validate_task(task)"
+                class="event"
+                data-bs-toggle="modal"
+                [style.background-color]="task.project.color"
+                [attr.data-bs-target]="'#task-edit-modal' + task.id">
+            </span>
+        </div>
+    </div>
+    <div class="event-date">
+        <div class="number-item number-date">
+            <a  class="dateEventNumber" 
+            [ngClass]="{'active-day': is_today()}"
+            data-bs-toggle="modal"
+            [attr.data-bs-target]="'#task-new-modal'">
+             {{date.getDate()}}
+            </a>
+        </div>
+    </div>
+</div>

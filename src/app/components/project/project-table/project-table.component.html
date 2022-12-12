@@ -1,0 +1,37 @@
+<section class="intro">
+    <div class="mask d-flex align-items-center h-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-8">
+                    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" [attr.data-bs-target]="'#project-new-modal'">New</button>
+                    <div class="card bg-dark shadow-2-strong">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-dark table-borderless mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">PROJECT TITLE</th>
+                                            <th scope="col">DESCRIPTION</th>
+                                            <th scope="col">COLOR</th>
+                                            <th scope="col">OPTIONS</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let project of projects">
+                                            <th scope="row">{{project.title}}</th>
+                                            <td>{{project.description}}</td>
+                                            <td><span class="btn btn-primary" [style.background-color]="project.color">{{project.color}}</span></td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#project-edit-modal' + project.id">Edit</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

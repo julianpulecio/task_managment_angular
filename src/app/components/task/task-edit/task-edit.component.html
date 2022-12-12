@@ -1,0 +1,60 @@
+<div class="modal fade" id="task-edit-modal{{task.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" [style.background-color]="task.project.color">
+                <h5 class="modal-title">{{task.title}}</h5>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formdata" class="d-grid gap-3 m-3" (ngSubmit)="onClickSubmit(formdata.value)">
+                    <div class="form-group">
+                      <label>Task Title</label>
+                      <input [(ngModel)]="task.title" class="form-control" formControlName="title">
+                      <small class="invalid-feedback d-block" *ngIf="formdata.get('title')?.errors" >
+                        {{formdata.get('title')?.errors}}
+                      </small>
+                    </div>
+                    <div class="form-group">
+                      <label>Start Date</label>
+                      <input [ngModel] ="task.start_date | date:'yyyy-MM-dd'" (ngModelChange)="task.start_date = $event" class="form-control" type="date" formControlName="start_date">                   
+                      <small class="invalid-feedback d-block" *ngIf="formdata.get('start_date')?.errors" >
+                        {{formdata.get('start_date')?.errors}}
+                      </small>
+                    </div>
+                    <div class="form-group">
+                      <label>End Date</label>
+                      <input [ngModel] ="task.end_date | date:'yyyy-MM-dd'" (ngModelChange)="task.end_date = $event" class="form-control" type="date" formControlName="end_date">                   
+                      <small class="invalid-feedback d-block" *ngIf="formdata.get('end_date')?.errors" >
+                        {{formdata.get('end_date')?.errors}}
+                      </small>
+                    </div>
+                    <div class="form-group">
+                      <label>Select Employees</label>
+                      <ng-multiselect-dropdown formControlName="employees"
+                        [(ngModel)]="task.employees" 
+                        [placeholder]="'Assing employees'"
+                        [settings]="dropdown_employees_settings"
+                        [data]="all_employees_List"
+                      >
+                      </ng-multiselect-dropdown>
+                      <small class="invalid-feedback d-block" *ngIf="formdata.get('employees')?.errors" >
+                        {{formdata.get('employees')?.errors}}
+                      </small>
+                    </div>
+                    <div class="form-group">
+                      <label>Description</label>
+                      <textarea [(ngModel)]="task.description" formControlName="description" class="form-control" rows="5" id="comment"></textarea>                      
+                      <small class="invalid-feedback d-block" *ngIf="formdata.get('description')?.errors" >
+                        {{formdata.get('description')?.errors}}
+                      </small>
+                    </div>
+                    
+                    <div class="modal-footer">
+                      <button type="button" #closebutton class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="onClickDelete()" >Delete</button>
+                      <button type="submit" class="btn btn-primary" >Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
